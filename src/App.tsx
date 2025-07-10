@@ -3,7 +3,39 @@ import './App.css'
 export default function App() {
   return (
     <main>
-      React ⚛️ + Vite ⚡ + Replit 🌀
+      <h1>React ⚛️ + Vite ⚡ + Replit 🌀</h1>
+      
+      <div className="form-container">
+        <div className="input-group">
+          <label htmlFor="input1">First Input:</label>
+          <input 
+            type="text" 
+            id="input1" 
+            name="input1" 
+            placeholder="Enter first value"
+          />
+        </div>
+        
+        <div className="input-group">
+          <label htmlFor="input2">Second Input:</label>
+          <input 
+            type="text" 
+            id="input2" 
+            name="input2" 
+            placeholder="Enter second value"
+          />
+        </div>
+        
+        <div className="input-group">
+          <label htmlFor="combobox">Select Option:</label>
+          <select id="combobox" name="combobox">
+            <option value="">Choose an option</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </select>
+        </div>
+      </div>
     </main>
   )
 }
