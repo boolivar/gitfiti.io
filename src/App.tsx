@@ -2,7 +2,7 @@ import './App.css'
 import { useState } from 'react'
 
 export default function App() {
-  const [rangeValue, setRangeValue] = useState(50)
+  const [rangeValue, setRangeValue] = useState(16)
 
   return (
     <main>
@@ -45,8 +45,8 @@ export default function App() {
             type="range" 
             id="range" 
             name="range"
-            min="0"
-            max="100"
+            min="4"
+            max="16"
             value={rangeValue}
             onChange={(e) => setRangeValue(Number(e.target.value))}
           />
