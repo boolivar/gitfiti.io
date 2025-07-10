@@ -1,6 +1,9 @@
 import './App.css'
+import { useState } from 'react'
 
 export default function App() {
+  const [rangeValue, setRangeValue] = useState(50)
+
   return (
     <main>
       <h1>React ⚛️ + Vite ⚡ + Replit 🌀</h1>
@@ -34,6 +37,19 @@ export default function App() {
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>
+        </div>
+        
+        <div className="input-group">
+          <label htmlFor="range">Range Slider: {rangeValue}</label>
+          <input 
+            type="range" 
+            id="range" 
+            name="range"
+            min="0"
+            max="100"
+            value={rangeValue}
+            onChange={(e) => setRangeValue(Number(e.target.value))}
+          />
         </div>
       </div>
     </main>
