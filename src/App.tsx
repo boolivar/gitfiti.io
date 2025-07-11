@@ -1,3 +1,4 @@
+
 import './App.css'
 import { useState } from 'react'
 
@@ -79,20 +80,20 @@ export default function App() {
         <div className="text-panel">
           {formData.text}
         </div>
-
-        <button 
-          className="copy-button"
-          onClick={() => {
-            navigator.clipboard.writeText(formData.text).then(() => {
-              alert('Text copied to clipboard');
-            }).catch(() => {
-              alert('Failed to copy to clipboard');
-            });
-          }}
-        >
-          Copy
-        </button>
       </div>
+      
+      <button 
+        className="copy-button"
+        onClick={() => {
+          navigator.clipboard.writeText(formData.text).then(() => {
+            alert('Text copied to clipboard');
+          }).catch(() => {
+            alert('Failed to copy to clipboard');
+          });
+        }}
+      >
+        Copy
+      </button>
     </main>
   )
 }
