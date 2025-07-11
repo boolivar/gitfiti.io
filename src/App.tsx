@@ -76,26 +76,6 @@ export default function App() {
         </div>
         
         <div className="text-panel">
-          <h2>Form Data</h2>
-          <div className="data-display">
-            <div className="data-item">
-              <strong>First Input:</strong> {formData.input1 || 'Empty'}
-            </div>
-            <div className="data-item">
-              <strong>Second Input:</strong> {formData.input2 || 'Empty'}
-            </div>
-            <div className="data-item">
-              <strong>Selected Option:</strong> {formData.combobox || 'None selected'}
-            </div>
-            <div className="data-item">
-              <strong>Range Value:</strong> {formData.range}
-            </div>
-          </div>
-          
-          <div className="json-display">
-            <h3>JSON Data:</h3>
-            <pre>{JSON.stringify(formData, null, 2)}</pre>
-          </div>
         </div>
       </div>
     </main>
