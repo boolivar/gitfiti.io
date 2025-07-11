@@ -9,16 +9,11 @@ export default function App() {
     range: 16
   })
 
-  // Global input change handler
   const handleInputChange = (name: string, value: string | number) => {
-    console.log(`Input changed: ${name} = ${value}`)
     setFormData(prev => ({
       ...prev,
       [name]: value
     }))
-    
-    // Add any additional global logic here
-    // For example: validation, API calls, etc.
   }
 
   return (
