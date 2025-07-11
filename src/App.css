@@ -81,3 +81,55 @@ main {
   box-shadow: none;
   outline: 2px solid #007bff;
 }
+
+.data-display {
+  margin-bottom: 1.5rem;
+}
+
+.data-item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-radius: 4px;
+  border-left: 3px solid #007bff;
+}
+
+.json-display, .summary-display {
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  padding: 1rem;
+  border: 1px solid #e9ecef;
+  margin-bottom: 1rem;
+}
+
+.json-display pre, .summary-text {
+  margin: 0 0 1rem 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  color: #495057;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background-color: #fff;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+}
+
+.copy-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+}
+
+.copy-button:hover {
+  background-color: #0056b3;
+}
+
+.copy-button:active {
+  background-color: #004085;
+}

@@ -76,6 +76,67 @@ export default function App() {
         </div>
         
         <div className="text-panel">
+          <h2>Form Data</h2>
+          <div className="data-display">
+            <div className="data-item">
+              <strong>First Input:</strong> {formData.input1 || 'Empty'}
+            </div>
+            <div className="data-item">
+              <strong>Second Input:</strong> {formData.input2 || 'Empty'}
+            </div>
+            <div className="data-item">
+              <strong>Selected Option:</strong> {formData.combobox || 'None selected'}
+            </div>
+            <div className="data-item">
+              <strong>Range Value:</strong> {formData.range}
+            </div>
+          </div>
+          
+          <div className="json-display">
+            <h3>JSON Data:</h3>
+            <pre id="json-content">{JSON.stringify(formData, null, 2)}</pre>
+            <button 
+              className="copy-button"
+              onClick={() => {
+                const jsonContent = JSON.stringify(formData, null, 2);
+                navigator.clipboard.writeText(jsonContent).then(() => {
+                  alert('JSON data copied to clipboard!');
+                }).catch(() => {
+                  alert('Failed to copy to clipboard');
+                });
+              }}
+            >
+              Copy JSON
+            </button>
+          </div>
+          
+          <div className="summary-display">
+            <h3>Summary Text:</h3>
+            <div id="summary-content" className="summary-text">
+              Form Summary:
+              - First Input: {formData.input1 || 'not provided'}
+              - Second Input: {formData.input2 || 'not provided'}
+              - Selected Option: {formData.combobox || 'none'}
+              - Range Value: {formData.range}
+            </div>
+            <button 
+              className="copy-button"
+              onClick={() => {
+                const summaryText = `Form Summary:
+- First Input: ${formData.input1 || 'not provided'}
+- Second Input: ${formData.input2 || 'not provided'}
+- Selected Option: ${formData.combobox || 'none'}
+- Range Value: ${formData.range}`;
+                navigator.clipboard.writeText(summaryText).then(() => {
+                  alert('Summary copied to clipboard!');
+                }).catch(() => {
+                  alert('Failed to copy to clipboard');
+                });
+              }}
+            >
+              Copy Summary
+            </button>
+          </div>
         </div>
       </div>
     </main>
