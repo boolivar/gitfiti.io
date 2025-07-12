@@ -106,18 +106,36 @@ export default function App() {
         <div className="text-panel">
           {formData.text}
         </div>
-        <button 
-          className="copy-button"
-          onClick={() => {
-            navigator.clipboard.writeText(formData.text).then(() => {
-              alert('Text copied to clipboard');
-            }).catch(() => {
-              alert('Failed to copy to clipboard');
-            });
-          }}
-        >
-          Copy
-        </button>
+        <div>
+          <button 
+            className="copy-button"
+            onClick={() => {
+              navigator.clipboard.writeText(formData.text).then(() => {
+                alert('Text copied to clipboard');
+              }).catch(() => {
+                alert('Failed to copy to clipboard');
+              });
+            }}
+          >
+            Copy
+          </button>
+          <button 
+            className="copy-button"
+            onClick={() => {
+              const blob = new Blob([formData.text], { type: 'text/plain' });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'gitfiti-script.sh';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }}
+          >
+            Download
+          </button>
+        </div>
       </div>
     </main>
   )

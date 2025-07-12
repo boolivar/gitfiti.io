@@ -8,7 +8,7 @@ export class Gitfiti {
     this.scale = scale;
     this.offset = offset;
   }
-  
+
   generateScript(): string {
     var script = '';
     var date = this.fromDate();
