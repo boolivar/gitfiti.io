@@ -14,7 +14,7 @@ export class Gitfiti {
     var date = this.fromDate();
     for (var col = 0; col < this.image[0].length; ++col) {
       for (var row = 0; row < this.image.length; ++row) {
-        script += this.formatCommitLine(date).repeat(this.image[row][col] * this.scale);      
+        script += this.formatCommitLine(date).repeat(this.image[row][col] * this.scale);  
         date.setDate(date.getDate() + 1);
       }
     }
