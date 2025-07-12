@@ -1,21 +1,47 @@
 
 import './App.css'
 import { useState } from 'react'
+import { Gitfiti } from './Gitfiti'
+
+type State = {
+    input1: string;
+    input2: string;
+    combobox: string;
+    range: number;
+    text: string;
+}
 
 export default function App() {
+  const HEART_SHINY = [
+      [0,4,4,0,4,4,0],
+      [4,2,0,4,2,2,4],
+      [4,0,2,2,2,2,4],
+      [4,2,2,2,2,2,4],
+      [0,4,2,2,2,4,0],
+      [0,0,4,2,4,0,0],
+      [0,0,0,4,0,0,0],
+  ];
+  
   const [formData, setFormData] = useState({
     input1: '',
     input2: '',
     combobox: '',
-    range: 16,
+    range: 2,
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean placerat lacus eu iaculis pretium. Donec venenatis vestibulum consequat. Suspendisse libero nisi, vestibulum in blandit ut, sollicitudin pharetra urna. Morbi euismod libero dolor, ac laoreet nunc scelerisque vel. Quisque fringilla nibh elementum sodales pulvinar. Aliquam sodales pellentesque ultrices. Pellentesque mauris elit, finibus nec mi eu, eleifend eleifend leo. Suspendisse venenatis in lacus in consequat.`
-  })
+  });
 
   const handleInputChange = (name: string, value: string | number) => {
-    setFormData(prev => ({
+    setFormData(prev => generateGitfiti({
       ...prev,
       [name]: value
-    }))
+    }));
+  }
+
+  const generateGitfiti = (state: State): State => {
+    return {
+      ...state,
+      text: new Gitfiti(HEART_SHINY, state.range, 0).generateScript()
+    };
   }
 
   return (
@@ -69,8 +95,8 @@ export default function App() {
               type="range" 
               id="range" 
               name="range"
-              min="4"
-              max="16"
+              min="1"
+              max="5"
               value={formData.range}
               onChange={(e) => handleInputChange('range', Number(e.target.value))}
             />
@@ -80,20 +106,19 @@ export default function App() {
         <div className="text-panel">
           {formData.text}
         </div>
+        <button 
+          className="copy-button"
+          onClick={() => {
+            navigator.clipboard.writeText(formData.text).then(() => {
+              alert('Text copied to clipboard');
+            }).catch(() => {
+              alert('Failed to copy to clipboard');
+            });
+          }}
+        >
+          Copy
+        </button>
       </div>
-      
-      <button 
-        className="copy-button"
-        onClick={() => {
-          navigator.clipboard.writeText(formData.text).then(() => {
-            alert('Text copied to clipboard');
-          }).catch(() => {
-            alert('Failed to copy to clipboard');
-          });
-        }}
-      >
-        Copy
-      </button>
     </main>
   )
 }
