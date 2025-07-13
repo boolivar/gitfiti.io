@@ -2,6 +2,7 @@
 import './App.css'
 import { useState } from 'react'
 import { Gitfiti, GitfitiImage } from './Gitfiti'
+import ContributionCalendar from './ContributionCalendar'
 
 type State = {
     input1: string;
@@ -104,7 +105,16 @@ export default function App() {
         </div>
         
         <div className="text-panel">
-          {formData.text}
+          <ContributionCalendar 
+            image={GitfitiImage[formData.combobox]} 
+            scale={formData.range} 
+          />
+          <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem', color: '#495057' }}>Generated Script:</h4>
+            <pre style={{ margin: 0, fontSize: '0.8rem', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+              {formData.text}
+            </pre>
+          </div>
         </div>
         <div>
           <button 
