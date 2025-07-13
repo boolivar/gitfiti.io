@@ -102,16 +102,23 @@ export default function App() {
               onChange={(e) => handleInputChange('range', Number(e.target.value))}
             />
           </div>
+          
+          <ContributionCalendar 
+            image={GitfitiImage[formData.combobox]} 
+            scale={formData.range} 
+          />
         </div>
-        <div>
-          <div className="text-panel">
-            <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem', color: '#495057' }}>Generated Script:</h4>
-              <pre style={{ margin: 0, fontSize: '0.8rem', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-                {formData.text}
-              </pre>
-            </div>
+        
+        <div className="text-panel">
+          <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem', color: '#495057' }}>Generated Script:</h4>
+            <pre style={{ margin: 0, fontSize: '0.8rem', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+              {formData.text}
+            </pre>
           </div>
+        </div>
+        
+        <div>
           <button 
             className="copy-button"
             onClick={() => {
@@ -130,7 +137,6 @@ export default function App() {
               const blob = new Blob([formData.text], { type: 'text/plain' });
               const url = URL.createObjectURL(blob);
               const a = document.createElement('a');
-              a.href = url;
               a.download = 'gitfiti-script.sh';
               document.body.appendChild(a);
               a.click();
@@ -141,10 +147,6 @@ export default function App() {
             Download
           </button>
         </div>
-        <ContributionCalendar 
-          image={GitfitiImage[formData.combobox]} 
-          scale={formData.range} 
-        />
       </div>
     </main>
   )
