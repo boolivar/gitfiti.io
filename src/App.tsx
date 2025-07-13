@@ -1,7 +1,7 @@
 
 import './App.css'
 import { useState } from 'react'
-import { Gitfiti } from './Gitfiti'
+import { Gitfiti, GitfitiImage } from './Gitfiti'
 
 type State = {
     input1: string;
@@ -12,20 +12,10 @@ type State = {
 }
 
 export default function App() {
-  const HEART_SHINY = [
-      [0,4,4,0,4,4,0],
-      [4,2,0,4,2,2,4],
-      [4,0,2,2,2,2,4],
-      [4,2,2,2,2,2,4],
-      [0,4,2,2,2,4,0],
-      [0,0,4,2,4,0,0],
-      [0,0,0,4,0,0,0],
-  ];
-  
   const [formData, setFormData] = useState({
     input1: '',
     input2: '',
-    combobox: '',
+    combobox: 'OCTOCAT',
     range: 2,
     text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean placerat lacus eu iaculis pretium. Donec venenatis vestibulum consequat. Suspendisse libero nisi, vestibulum in blandit ut, sollicitudin pharetra urna. Morbi euismod libero dolor, ac laoreet nunc scelerisque vel. Quisque fringilla nibh elementum sodales pulvinar. Aliquam sodales pellentesque ultrices. Pellentesque mauris elit, finibus nec mi eu, eleifend eleifend leo. Suspendisse venenatis in lacus in consequat.`
   });
@@ -40,7 +30,7 @@ export default function App() {
   const generateGitfiti = (state: State): State => {
     return {
       ...state,
-      text: new Gitfiti(HEART_SHINY, state.range, 0).generateScript()
+      text: new Gitfiti(GitfitiImage[state.combobox], state.range, 0).generateScript()
     };
   }
 
@@ -82,10 +72,20 @@ export default function App() {
               value={formData.combobox}
               onChange={(e) => handleInputChange('combobox', e.target.value)}
             >
-              <option value="">Choose an option</option>
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3">Option 3</option>
+              <option value="OCTOCAT">OCTOCAT</option>
+              <option value="OCTOCAT2">OCTOCAT2</option>
+              <option value="KITTY">KITTY</option>
+              <option value="ONEUP">ONEUP</option>
+              <option value="ONEUP2">ONEUP2</option>
+              <option value="HACKERSCHOOL">HACKERSCHOOL</option>
+              <option value="HELLO">HELLO</option>
+              <option value="HEART1">HEART1</option>
+              <option value="HEART2">HEART2</option>
+              <option value="HIREME">HIREME</option>
+              <option value="BEER">BEER</option>
+              <option value="GLIDERS">GLIDERS</option>
+              <option value="HEART">HEART</option>
+              <option value="HEART_SHINY">HEART_SHINY</option>
             </select>
           </div>
           
