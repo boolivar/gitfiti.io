@@ -12,9 +12,9 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({ image, scal
   const getContributionLevel = (value: number): string => {
     const scaledValue = value * scale;
     if (scaledValue === 0) return 'level-0';
-    if (scaledValue === 1) return 'level-1';
-    if (scaledValue <= 3) return 'level-2';
-    if (scaledValue <= 6) return 'level-3';
+    if (scaledValue <= 5) return 'level-1';
+    if (scaledValue <= 10) return 'level-2';
+    if (scaledValue <= 15) return 'level-3';
     return 'level-4';
   };
 
@@ -76,10 +76,10 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({ image, scal
         <span className="legend-text">Less</span>
         <div className="legend-squares">
           <div className="legend-square level-0" title="0 contributions"></div>
-          <div className="legend-square level-1" title="1 contribution"></div>
-          <div className="legend-square level-2" title="2-3 contributions"></div>
-          <div className="legend-square level-3" title="4-6 contributions"></div>
-          <div className="legend-square level-4" title="7+ contributions"></div>
+          <div className="legend-square level-1" title="1-5 contribution"></div>
+          <div className="legend-square level-2" title="6-10 contributions"></div>
+          <div className="legend-square level-3" title="11-15 contributions"></div>
+          <div className="legend-square level-4" title="16+ contributions"></div>
         </div>
         <span className="legend-text">More</span>
       </div>

@@ -142,13 +142,13 @@ export const GitfitiImage = {
 
 export class Gitfiti {
   image: number[][];
-  scale: number;
   offset: number;
+  scale: number;
 
-  constructor(image: number[][], scale: number, offset: number) {
+  constructor(image: number[][], offset: number, scale: number = 4) {
     this.image = image;
-    this.scale = scale;
     this.offset = offset;
+    this.scale = scale;
   }
 
   generateScript(): string {
