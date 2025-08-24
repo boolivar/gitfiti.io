@@ -93,10 +93,7 @@ export default function App() {
             </div>
       </div>
 
-      <ContributionCalendar
-        image={GitfitiImage[formData.combobox]}
-        scale={SCALE}
-      />
+      <ContributionCalendar { ...new Gitfiti(GitfitiImage[formData.combobox]) }/>
 
       <div className="script">
         <div className="script-text">
