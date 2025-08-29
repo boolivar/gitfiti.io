@@ -42,34 +42,12 @@ export default function App() {
 
   return (
     <main>
-      <h1>React ⚛️ + Vite ⚡ + Replit 🌀</h1>
+      <h1>Gitfiti</h1>
 
       <div className="inputs">
         <div className="input-group">
-              <label htmlFor="input1">First Input:</label>
-              <input
-                type="text"
-                id="input1"
-                name="input1"
-                placeholder="Enter first value"
-                value={formData.input1}
-                onChange={(e) => handleInputChange("input1", e.target.value)}
-              />
-            </div>
-        <div className="input-group">
-              <label htmlFor="input2">Second Input:</label>
-              <input
-                type="text"
-                id="input2"
-                name="input2"
-                placeholder="Enter second value"
-                value={formData.input2}
-                onChange={(e) => handleInputChange("input2", e.target.value)}
-              />
-            </div>
-        <div className="input-group">
-              <label htmlFor="combobox">Select Option:</label>
-              <select
+          <label htmlFor="combobox">Select Option:</label>
+            <select
                 id="combobox"
                 name="combobox"
                 value={formData.combobox}
@@ -96,12 +74,6 @@ export default function App() {
       <ContributionCalendar { ...new Gitfiti(GitfitiImage[formData.combobox]) }/>
 
       <div className="script">
-        <div className="script-text">
-          <code>
-            {formData.text}
-          </code>
-        </div>
-  
         <div className="script-actions">
           <button
             onClick={() => {
@@ -131,6 +103,13 @@ export default function App() {
           >
             Download
           </button>
+        </div>
+        <div className="script-text">
+          <pre>
+          {
+            formData.text
+          }
+          </pre>
         </div>
       </div>
     </main>

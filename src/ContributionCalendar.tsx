@@ -6,46 +6,26 @@ interface ContributionCalendarProps {
   contributionLevel: (x: number, y: number) => string;
 }
 
-const ContributionCalendar: React.FC<ContributionCalendarProps> = ({ contributionCount, contributionLevel }) => {
+const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
+  contributionCount,
+  contributionLevel,
+}) => {
   const size = 53;
   // Days of the week labels
   const dayLabels = ["", "Mon", "", "Wed", "", "Fri", ""];
 
   return (
     <div className="contribution-calendar">
-      <div className="calendar-header">
-        <h3>Contribution Calendar Preview</h3>
-      </div>
-
       <div className="calendar-container">
-        {/* <div className="day-labels">
-          {dayLabels.map((day, index) => (
-            <div key={index} className="day-label">
-              {day}
-            </div>
+        <div className="week-labels">
+          {[...Array(7).keys()].map((day) => (
+            <span>{dayLabels[day]}</span>
           ))}
         </div>
 
-        <div className="calendar-grid">
-          {weeks.map((week, weekIndex) => (
-            <div key={weekIndex} className="week">
-              {week.map((day, dayIndex) => (
-                <div
-                  key={`${weekIndex}-${dayIndex}`}
-                  className={`day ${day.level}`}
-                  title={`${day.count} contributions`}
-                  data-count={day.count}
-                  data-date={`Week ${weekIndex + 1}, Day ${dayIndex + 1}`}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-       */}
         <table className="calendar-table">
           <thead>
             <tr>
-              <th scope="col" className="th rh"></th>
               {[...Array(size).keys()].map((i) => (
                 <th className={`th th-${i}`}></th>
               ))}
@@ -53,10 +33,7 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({ contributio
           </thead>
           <tbody>
             {[...Array(7).keys()].map((day) => (
-              <tr>
-                <th scope="row" className={`rh rh-${day}`}>
-                  {dayLabels[day]}
-                </th>
+              <tr className={`tr-${day}`}>
                 {[...Array(size).keys()].map((week) => (
                   <td
                     className={`day tr-${week}-${day} ${contributionLevel(week, day)}`}
