@@ -16,55 +16,57 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
 
   return (
     <div className="contribution-calendar">
-      <div className="calendar-container">
-        <div className="week-labels">
-          {[...Array(7).keys()].map((day) => (
-            <span>{dayLabels[day]}</span>
-          ))}
-        </div>
-
-        <table className="calendar-table">
-          <thead>
-            <tr>
-              {[...Array(size).keys()].map((i) => (
-                <th className={`th th-${i}`}></th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
+      <div className="contribution-container">
+        <div className="calendar-container">
+          <div className="week-labels">
             {[...Array(7).keys()].map((day) => (
-              <tr className={`tr-${day}`}>
-                {[...Array(size).keys()].map((week) => (
-                  <td
-                    className={`day tr-${week}-${day} ${contributionLevel(week, day)}`}
-                    title={`${contributionCount(week, day)} contributions`}
-                  ></td>
+              <span>{dayLabels[day]}</span>
+            ))}
+          </div>
+  
+          <table className="calendar-table">
+            <thead>
+              <tr>
+                {[...Array(size).keys()].map((i) => (
+                  <th className={`th th-${i}`}></th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <div className="calendar-legend">
-        <span className="legend-text">Less</span>
-        <div className="legend-squares">
-          <div className="legend-square level-0" title="0 contributions"></div>
-          <div className="legend-square level-1" title="1-5 contribution"></div>
-          <div
-            className="legend-square level-2"
-            title="6-10 contributions"
-          ></div>
-          <div
-            className="legend-square level-3"
-            title="11-15 contributions"
-          ></div>
-          <div
-            className="legend-square level-4"
-            title="16+ contributions"
-          ></div>
+            </thead>
+            <tbody>
+              {[...Array(7).keys()].map((day) => (
+                <tr className={`tr-${day}`}>
+                  {[...Array(size).keys()].map((week) => (
+                    <td
+                      className={`day tr-${week}-${day} ${contributionLevel(week, day)}`}
+                      title={`${contributionCount(week, day)} contributions`}
+                    ></td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-        <span className="legend-text">More</span>
+  
+        <div className="calendar-legend">
+          <span className="legend-text">Less</span>
+          <div className="legend-squares">
+            <div className="legend-square level-0" title="0 contributions"></div>
+            <div className="legend-square level-1" title="1-5 contribution"></div>
+            <div
+              className="legend-square level-2"
+              title="6-10 contributions"
+            ></div>
+            <div
+              className="legend-square level-3"
+              title="11-15 contributions"
+            ></div>
+            <div
+              className="legend-square level-4"
+              title="16+ contributions"
+            ></div>
+          </div>
+          <span className="legend-text">More</span>
+        </div>
       </div>
     </div>
   );
