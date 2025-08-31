@@ -17,7 +17,7 @@ export default function App() {
     input1: "",
     input2: "",
     combobox: "OCTOCAT",
-    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean placerat lacus eu iaculis pretium. Donec venenatis vestibulum consequat. Suspendisse libero nisi, vestibulum in blandit ut, sollicitudin pharetra urna. Morbi euismod libero dolor, ac laoreet nunc scelerisque vel. Quisque fringilla nibh elementum sodales pulvinar. Aliquam sodales pellentesque ultrices. Pellentesque mauris elit, finibus nec mi eu, eleifend eleifend leo. Suspendisse venenatis in lacus in consequat.`,
+    text: new Gitfiti(GitfitiImage["OCTOCAT"]).generateScript()
   });
 
   const handleInputChange = (name: string, value: string | number) => {
