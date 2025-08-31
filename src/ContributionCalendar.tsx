@@ -1,14 +1,13 @@
 import React from "react";
 import "./ContributionCalendar.css";
+import { Gitfiti } from "./Gitfiti";
 
 interface ContributionCalendarProps {
-  contributionCount: (x: number, y: number) => number;
-  contributionLevel: (x: number, y: number) => string;
+  gitfiti: Gitfiti;
 }
 
 const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
-  contributionCount,
-  contributionLevel,
+  gitfiti
 }) => {
   const size = 53;
   // Days of the week labels
@@ -37,8 +36,8 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
                 <tr className={`tr-${day}`}>
                   {[...Array(size).keys()].map((week) => (
                     <td
-                      className={`day tr-${week}-${day} ${contributionLevel(week, day)}`}
-                      title={`${contributionCount(week, day)} contributions`}
+                      className={`day tr-${week}-${day} ${gitfiti.contributionLevel(week, day)}`}
+                      title={`${gitfiti.contributionCount(week, day)} contributions`}
                     ></td>
                   ))}
                 </tr>

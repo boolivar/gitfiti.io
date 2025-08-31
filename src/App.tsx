@@ -3,21 +3,17 @@ import { useState } from "react";
 import { Gitfiti, GitfitiImage } from "./Gitfiti";
 import ContributionCalendar from "./ContributionCalendar";
 
-const SCALE = 4;
-
 type State = {
-  input1: string;
-  input2: string;
   combobox: string;
-  text: string;
+  offset: number;
+  gitfiti: Gitfiti;
 };
 
 export default function App() {
   const [formData, setFormData] = useState({
-    input1: "",
-    input2: "",
     combobox: "OCTOCAT",
-    text: new Gitfiti(GitfitiImage["OCTOCAT"]).generateScript()
+    offset: 0,
+    gitfiti: new Gitfiti(GitfitiImage["OCTOCAT"])
   });
 
   const handleInputChange = (name: string, value: string | number) => {
@@ -32,11 +28,10 @@ export default function App() {
   const generateGitfiti = (state: State): State => {
     return {
       ...state,
-      text: new Gitfiti(
+      gitfiti: new Gitfiti(
         GitfitiImage[state.combobox],
-        0,
-        SCALE,
-      ).generateScript(),
+        state.offset,
+      ),
     };
   };
 
@@ -47,31 +42,35 @@ export default function App() {
       <div className="inputs">
         <div className="input-group">
           <label htmlFor="combobox">Select Option:</label>
-            <select
-                id="combobox"
-                name="combobox"
-                value={formData.combobox}
-                onChange={(e) => handleInputChange("combobox", e.target.value)}
-              >
-                <option value="OCTOCAT">OCTOCAT</option>
-                <option value="OCTOCAT2">OCTOCAT2</option>
-                <option value="KITTY">KITTY</option>
-                <option value="ONEUP">ONEUP</option>
-                <option value="ONEUP2">ONEUP2</option>
-                <option value="HACKERSCHOOL">HACKERSCHOOL</option>
-                <option value="HELLO">HELLO</option>
-                <option value="HEART1">HEART1</option>
-                <option value="HEART2">HEART2</option>
-                <option value="HIREME">HIREME</option>
-                <option value="BEER">BEER</option>
-                <option value="GLIDERS">GLIDERS</option>
-                <option value="HEART">HEART</option>
-                <option value="HEART_SHINY">HEART_SHINY</option>
-              </select>
-            </div>
+          <select
+              id="combobox"
+              name="combobox"
+              value={formData.combobox}
+              onChange={(e) => handleInputChange("combobox", e.target.value)}
+            >
+              <option value="OCTOCAT">OCTOCAT</option>
+              <option value="OCTOCAT2">OCTOCAT2</option>
+              <option value="KITTY">KITTY</option>
+              <option value="ONEUP">ONEUP</option>
+              <option value="ONEUP2">ONEUP2</option>
+              <option value="HACKERSCHOOL">HACKERSCHOOL</option>
+              <option value="HELLO">HELLO</option>
+              <option value="HEART1">HEART1</option>
+              <option value="HEART2">HEART2</option>
+              <option value="HIREME">HIREME</option>
+              <option value="BEER">BEER</option>
+              <option value="GLIDERS">GLIDERS</option>
+              <option value="HEART">HEART</option>
+              <option value="HEART_SHINY">HEART_SHINY</option>
+          </select>
+          <label htmlFor="offset">Week Offset:</label>
+          <input type="number" value={formData.offset} onChange={(e) =>
+            handleInputChange("offset", e.target.value)}>
+          </input>
+        </div>
       </div>
 
-      <ContributionCalendar { ...new Gitfiti(GitfitiImage[formData.combobox]) }/>
+      <ContributionCalendar { ...formData }/>
 
       <div className="script">
         <div className="script-actions">
@@ -107,7 +106,7 @@ export default function App() {
         <div className="script-text">
           <pre>
           {
-            formData.text
+            formData.gitfiti.generateScript()
           }
           </pre>
         </div>

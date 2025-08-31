@@ -188,7 +188,7 @@ export class Gitfiti {
 
   private fromDate(): Date {
     var date = this.nextSunday();
-    date.setDate(date.getDate() - 53 * 7 + this.offset);
+    date.setDate(date.getDate() - 53 * 7 + Math.min(53, Math.max(0, this.offset)));
     date.setUTCHours(12, 0, 0, 0);
     return date;
   }
