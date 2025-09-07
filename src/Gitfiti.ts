@@ -169,12 +169,15 @@ export class Gitfiti {
 
   generateScript(): string {
     var script = "";
-    var date = this.fromDate();
-    for (var col = 0; col < this.image[0].length; ++col) {
-      for (var row = 0; row < this.image.length; ++row) {
-        script += this.formatCommitLine(date).repeat(
-          this.image[row][col] * this.scale,
-        );
+    var nowDate = new Date();
+    var date = this.fromDate(nowDate);
+    for (var x = 0; x < 53; ++x) {
+      for (var y = 0; y < 7; ++y) {
+        if (date <= nowDate) {
+          script += this.formatCommitLine(date).repeat(
+            this.contributionCount(x, y),
+          );
+        }
         date.setDate(date.getDate() + 1);
       }
     }
@@ -186,15 +189,15 @@ export class Gitfiti {
     return `GIT_AUTHOR_DATE=${date} GIT_COMMITTER_DATE=${date} git commit --allow-empty -m "gitfiti" > /dev/null\n`;
   }
 
-  private fromDate(): Date {
-    var date = this.nextSunday();
-    date.setDate(date.getDate() - 53 * 7 + Math.min(53, Math.max(0, this.offset)));
+  private fromDate(nowDate: Date): Date {
+    var date = this.nextSunday(nowDate);
+    date.setDate(date.getDate() - 53 * 7);
     date.setUTCHours(12, 0, 0, 0);
     return date;
   }
 
-  private nextSunday(): Date {
-    var date = new Date();
+  private nextSunday(nowDate: Date): Date {
+    var date = new Date(nowDate);
     date.setDate(date.getDate() + (7 - date.getDay()));
     return date;
   }
