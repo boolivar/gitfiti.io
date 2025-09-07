@@ -19,7 +19,7 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
         <div className="calendar-container">
           <div className="week-labels">
             {[...Array(7).keys()].map((day) => (
-              <span>{dayLabels[day]}</span>
+              <span key={day}>{dayLabels[day]}</span>
             ))}
           </div>
   
@@ -27,15 +27,16 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
             <thead>
               <tr>
                 {[...Array(size).keys()].map((i) => (
-                  <th className={`th th-${i}`}></th>
+                  <th key={i} className={`th th-${i}`}></th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {[...Array(7).keys()].map((day) => (
-                <tr className={`tr-${day}`}>
+                <tr key={day} className={`tr-${day}`}>
                   {[...Array(size).keys()].map((week) => (
                     <td
+                      key={week}
                       className={`day tr-${week}-${day} ${gitfiti.contributionLevel(week, day)}`}
                       title={`${gitfiti.contributionCount(week, day)} contributions`}
                     ></td>

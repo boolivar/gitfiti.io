@@ -29,7 +29,7 @@ export default function App() {
     return {
       ...state,
       gitfiti: new Gitfiti(
-        GitfitiImage[state.combobox],
+        GitfitiImage[state.combobox as keyof typeof GitfitiImage],
         state.offset,
       ),
     };
@@ -65,7 +65,7 @@ export default function App() {
           </select>
           <label htmlFor="offset">Week Offset:</label>
           <input type="number" value={formData.offset} onChange={(e) =>
-            handleInputChange("offset", e.target.value)}>
+            handleInputChange("offset", parseInt(e.target.value) || 0)}>
           </input>
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function App() {
           <button
             onClick={() => {
               navigator.clipboard
-                .writeText(formData.text)
+                .writeText(formData.gitfiti.generateScript())
                 .then(() => {
                   alert("Text copied to clipboard");
                 })
@@ -90,9 +90,10 @@ export default function App() {
           </button>
           <button
             onClick={() => {
-              const blob = new Blob([formData.text], { type: "text/plain" });
+              const blob = new Blob([formData.gitfiti.generateScript()], { type: "text/plain" });
               const url = URL.createObjectURL(blob);
               const a = document.createElement("a");
+              a.href = url;
               a.download = "gitfiti-script.sh";
               document.body.appendChild(a);
               a.click();
