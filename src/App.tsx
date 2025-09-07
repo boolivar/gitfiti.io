@@ -15,6 +15,7 @@ export default function App() {
     offset: 0,
     gitfiti: new Gitfiti(GitfitiImage["OCTOCAT"])
   });
+  const [showCopyHint, setShowCopyHint] = useState(false);
 
   const handleInputChange = (name: string, value: string | number) => {
     setFormData((prev) =>
@@ -79,7 +80,8 @@ export default function App() {
               navigator.clipboard
                 .writeText(formData.gitfiti.generateScript())
                 .then(() => {
-                  alert("Text copied to clipboard");
+                  setShowCopyHint(true);
+                  setTimeout(() => setShowCopyHint(false), 2000);
                 })
                 .catch(() => {
                   alert("Failed to copy to clipboard");
@@ -112,6 +114,11 @@ export default function App() {
           </pre>
         </div>
       </div>
+      {showCopyHint && (
+        <div className="copy-hint">
+          ✓ Script copied to clipboard!
+        </div>
+      )}
     </main>
   );
 }
