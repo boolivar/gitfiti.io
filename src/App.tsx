@@ -40,80 +40,83 @@ export default function App() {
     <main>
       <h1>Gitfiti</h1>
 
-      <div className="inputs">
-        <div className="input-group">
-          <label htmlFor="combobox">Select Option:</label>
-          <select
-              id="combobox"
-              name="combobox"
-              value={formData.combobox}
-              onChange={(e) => handleInputChange("combobox", e.target.value)}
+      <div className="gitfiti-layout">
+        <div>
+          <div className="inputs">
+            <div className="input-group">
+              <label htmlFor="combobox">Select Option:</label>
+              <select
+                  id="combobox"
+                  name="combobox"
+                  value={formData.combobox}
+                  onChange={(e) => handleInputChange("combobox", e.target.value)}
+                >
+                  <option value="OCTOCAT">OCTOCAT</option>
+                  <option value="OCTOCAT2">OCTOCAT2</option>
+                  <option value="KITTY">KITTY</option>
+                  <option value="ONEUP">ONEUP</option>
+                  <option value="ONEUP2">ONEUP2</option>
+                  <option value="HACKERSCHOOL">HACKERSCHOOL</option>
+                  <option value="HELLO">HELLO</option>
+                  <option value="HEART1">HEART1</option>
+                  <option value="HEART2">HEART2</option>
+                  <option value="HIREME">HIREME</option>
+                  <option value="BEER">BEER</option>
+                  <option value="GLIDERS">GLIDERS</option>
+                  <option value="HEART">HEART</option>
+                  <option value="HEART_SHINY">HEART_SHINY</option>
+              </select>
+              <label htmlFor="offset">Week Offset:</label>
+              <input type="number" value={formData.offset} onChange={(e) =>
+                handleInputChange("offset", parseInt(e.target.value) || 0)}>
+              </input>
+            </div>
+          </div>
+          <ContributionCalendar { ...formData }/>
+        </div>
+        <div className="script">
+          <div className="script-actions">
+            <button
+              onClick={() => {
+                navigator.clipboard
+                  .writeText(formData.gitfiti.generateScript())
+                  .then(() => {
+                    setShowCopyHint(true);
+                    setTimeout(() => setShowCopyHint(false), 2000);
+                  })
+                  .catch(() => {
+                    alert("Failed to copy to clipboard");
+                  });
+              }}
             >
-              <option value="OCTOCAT">OCTOCAT</option>
-              <option value="OCTOCAT2">OCTOCAT2</option>
-              <option value="KITTY">KITTY</option>
-              <option value="ONEUP">ONEUP</option>
-              <option value="ONEUP2">ONEUP2</option>
-              <option value="HACKERSCHOOL">HACKERSCHOOL</option>
-              <option value="HELLO">HELLO</option>
-              <option value="HEART1">HEART1</option>
-              <option value="HEART2">HEART2</option>
-              <option value="HIREME">HIREME</option>
-              <option value="BEER">BEER</option>
-              <option value="GLIDERS">GLIDERS</option>
-              <option value="HEART">HEART</option>
-              <option value="HEART_SHINY">HEART_SHINY</option>
-          </select>
-          <label htmlFor="offset">Week Offset:</label>
-          <input type="number" value={formData.offset} onChange={(e) =>
-            handleInputChange("offset", parseInt(e.target.value) || 0)}>
-          </input>
+              Copy
+            </button>
+            <button
+              onClick={() => {
+                const blob = new Blob([formData.gitfiti.generateScript()], { type: "text/plain" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "gitfiti-script.sh";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+              }}
+            >
+              Download
+            </button>
+          </div>
+          <div className="script-text">
+            <pre>
+            {
+              formData.gitfiti.generateScript()
+            }
+            </pre>
+          </div>
         </div>
       </div>
 
-      <ContributionCalendar { ...formData }/>
-
-      <div className="script">
-        <div className="script-actions">
-          <button
-            onClick={() => {
-              navigator.clipboard
-                .writeText(formData.gitfiti.generateScript())
-                .then(() => {
-                  setShowCopyHint(true);
-                  setTimeout(() => setShowCopyHint(false), 2000);
-                })
-                .catch(() => {
-                  alert("Failed to copy to clipboard");
-                });
-            }}
-          >
-            Copy
-          </button>
-          <button
-            onClick={() => {
-              const blob = new Blob([formData.gitfiti.generateScript()], { type: "text/plain" });
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement("a");
-              a.href = url;
-              a.download = "gitfiti-script.sh";
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-            }}
-          >
-            Download
-          </button>
-        </div>
-        <div className="script-text">
-          <pre>
-          {
-            formData.gitfiti.generateScript()
-          }
-          </pre>
-        </div>
-      </div>
       {showCopyHint && (
         <div className="copy-hint">
           ✓ Script copied to clipboard!

@@ -33,10 +33,17 @@ html {
   box-sizing: inherit;
 }
 
-main {
-  height: 95vh;
+.gitfiti-layout {
+  height: 85vh;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 1180px) {
+  .gitfiti-layout {
+    flex-direction: row;
+    gap: 15px;
+  }
 }
 
 .app-container {
