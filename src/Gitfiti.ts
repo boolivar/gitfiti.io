@@ -1,5 +1,4 @@
 export const GitfitiImage = {
-  CUSTOM: Array(7).fill(null).map(() => Array(53).fill(0)),
   KITTY: [
     [0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0],
     [0, 0, 4, 2, 4, 4, 4, 4, 2, 4, 0, 0],
@@ -146,30 +145,26 @@ export class Gitfiti {
   offset: number;
   scale: number;
 
-  constructor(image: number[][], offset: number = 0, scale: number = 4) {
-    this.image = image;
-    this.offset = offset;
-    this.scale = scale;
-  }
-
-  setValue(x: number, y: number, value: number) {
-    this.image[y][x] = value;
-  }
-
-  contributionLevel(x: number, y: number): string {
+  contributionLevel = (x: number, y: number) => {
     const value = this.contributionCount(x, y);
     if (value === 0) return "level-0";
     if (value <= 5) return "level-1";
     if (value <= 10) return "level-2";
     if (value <= 15) return "level-3";
     return "level-4";
-  }
+  };
 
-  contributionCount(x: number, y: number): number {
+  contributionCount = (x: number, y: number) => {
     var ox = x - this.offset;
     return ox >= 0 && ox < this.image[0].length
       ? this.image[y][ox] * this.scale
       : 0;
+  };
+
+  constructor(image: number[][], offset: number = 0, scale: number = 4) {
+    this.image = image;
+    this.offset = offset;
+    this.scale = scale;
   }
 
   generateScript(): string {

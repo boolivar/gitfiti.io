@@ -1,4 +1,4 @@
-import "./App.css";
+import './App.css'
 import { useState } from "react";
 import { Gitfiti, GitfitiImage } from "./Gitfiti";
 import ContributionCalendar from "./ContributionCalendar";
@@ -7,15 +7,13 @@ type State = {
   combobox: string;
   offset: number;
   gitfiti: Gitfiti;
-  customPattern: number[][];
 };
 
 export default function App() {
   const [formData, setFormData] = useState({
     combobox: "OCTOCAT",
     offset: 0,
-    gitfiti: new Gitfiti(GitfitiImage["OCTOCAT"]),
-    customPattern: Array(7).fill(null).map(() => Array(53).fill(0))
+    gitfiti: new Gitfiti(GitfitiImage["OCTOCAT"])
   });
   const [showCopyHint, setShowCopyHint] = useState(false);
 
@@ -29,36 +27,13 @@ export default function App() {
   };
 
   const generateGitfiti = (state: State): State => {
-    const pattern = state.combobox === 'CUSTOM' && state.customPattern 
-      ? state.customPattern 
-      : GitfitiImage[state.combobox as keyof typeof GitfitiImage];
-    
     return {
       ...state,
-      gitfiti: new Gitfiti(pattern, state.offset),
+      gitfiti: new Gitfiti(
+        GitfitiImage[state.combobox as keyof typeof GitfitiImage],
+        state.offset,
+      ),
     };
-  };
-
-  const handleCellClick = (week: number, day: number) => {
-    setFormData((prev) => {
-      // Switch to CUSTOM if not already
-      const newCombobox = "CUSTOM";
-      
-      // Create new custom pattern with incremented cell value
-      const newCustomPattern = prev.customPattern!.map((row, rowIndex) =>
-        rowIndex === day
-          ? row.map((cell, colIndex) =>
-              colIndex === week ? Math.min(cell + 1, 4) : cell
-            )
-          : [...row]
-      );
-      
-      return generateGitfiti({
-        ...prev,
-        combobox: newCombobox,
-        customPattern: newCustomPattern,
-      });
-    });
   };
 
   return (
@@ -71,28 +46,33 @@ export default function App() {
             <div className="input-group">
               <label htmlFor="combobox">Select Option:</label>
               <select
-                id="combobox"
-                name="combobox"
-                value={formData.combobox}
-                onChange={(e) => handleInputChange("combobox", e.target.value)}
-              >
-                {Object.keys(GitfitiImage).map((key) => (
-                  <option key={key} value={key}>
-                    {key}
-                  </option>
-                ))}
+                  id="combobox"
+                  name="combobox"
+                  value={formData.combobox}
+                  onChange={(e) => handleInputChange("combobox", e.target.value)}
+                >
+                  <option value="OCTOCAT">OCTOCAT</option>
+                  <option value="OCTOCAT2">OCTOCAT2</option>
+                  <option value="KITTY">KITTY</option>
+                  <option value="ONEUP">ONEUP</option>
+                  <option value="ONEUP2">ONEUP2</option>
+                  <option value="HACKERSCHOOL">HACKERSCHOOL</option>
+                  <option value="HELLO">HELLO</option>
+                  <option value="HEART1">HEART1</option>
+                  <option value="HEART2">HEART2</option>
+                  <option value="HIREME">HIREME</option>
+                  <option value="BEER">BEER</option>
+                  <option value="GLIDERS">GLIDERS</option>
+                  <option value="HEART">HEART</option>
+                  <option value="HEART_SHINY">HEART_SHINY</option>
               </select>
               <label htmlFor="offset">Week Offset:</label>
-              <input
-                type="number"
-                value={formData.offset}
-                onChange={(e) =>
-                  handleInputChange("offset", parseInt(e.target.value) || 0)
-                }
-              ></input>
+              <input type="number" value={formData.offset} onChange={(e) =>
+                handleInputChange("offset", parseInt(e.target.value) || 0)}>
+              </input>
             </div>
           </div>
-          <ContributionCalendar {...formData} onCellClick={handleCellClick} />
+          <ContributionCalendar { ...formData }/>
         </div>
         <div className="script">
           <div className="script-actions">
@@ -113,9 +93,7 @@ export default function App() {
             </button>
             <button
               onClick={() => {
-                const blob = new Blob([formData.gitfiti.generateScript()], {
-                  type: "text/plain",
-                });
+                const blob = new Blob([formData.gitfiti.generateScript()], { type: "text/plain" });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
@@ -130,13 +108,19 @@ export default function App() {
             </button>
           </div>
           <div className="script-text">
-            <pre>{formData.gitfiti.generateScript()}</pre>
+            <pre>
+            {
+              formData.gitfiti.generateScript()
+            }
+            </pre>
           </div>
         </div>
       </div>
 
       {showCopyHint && (
-        <div className="copy-hint">✓ Script copied to clipboard!</div>
+        <div className="copy-hint">
+          ✓ Script copied to clipboard!
+        </div>
       )}
     </main>
   );
