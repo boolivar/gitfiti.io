@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import { useState } from "react";
 import { Gitfiti, GitfitiImage } from "./Gitfiti";
 import ContributionCalendar from "./ContributionCalendar";
@@ -13,7 +13,7 @@ export default function App() {
   const [formData, setFormData] = useState({
     combobox: "OCTOCAT",
     offset: 0,
-    gitfiti: new Gitfiti(GitfitiImage["OCTOCAT"])
+    gitfiti: new Gitfiti(GitfitiImage["OCTOCAT"]),
   });
   const [showCopyHint, setShowCopyHint] = useState(false);
 
@@ -22,6 +22,30 @@ export default function App() {
       generateGitfiti({
         ...prev,
         [name]: value,
+      }),
+    );
+  };
+
+  const onCellClick = (week: number, day: number) => {
+    var offset = formData.offset;
+    if (formData.combobox !== "CUSTOM" || formData.offset !== 0) {
+      var copy = GitfitiImage.CUSTOM.map((row) => [...row]);
+      for (var x = 0; x < 53; ++x) {
+        for (var y = 0; y < 7; ++y) {
+          copy[y][x] = formData.gitfiti.imageValue(x, y);
+        }
+      }
+      GitfitiImage.CUSTOM = copy;
+      offset = 0;
+    }
+
+    GitfitiImage.CUSTOM[day][week] = (GitfitiImage.CUSTOM[day][week] + 1) % 5;
+
+    setFormData((prev) =>
+      generateGitfiti({
+        ...prev,
+        combobox: "CUSTOM",
+        offset,
       }),
     );
   };
@@ -46,33 +70,31 @@ export default function App() {
             <div className="input-group">
               <label htmlFor="combobox">Select Option:</label>
               <select
-                  id="combobox"
-                  name="combobox"
-                  value={formData.combobox}
-                  onChange={(e) => handleInputChange("combobox", e.target.value)}
-                >
-                  <option value="OCTOCAT">OCTOCAT</option>
-                  <option value="OCTOCAT2">OCTOCAT2</option>
-                  <option value="KITTY">KITTY</option>
-                  <option value="ONEUP">ONEUP</option>
-                  <option value="ONEUP2">ONEUP2</option>
-                  <option value="HACKERSCHOOL">HACKERSCHOOL</option>
-                  <option value="HELLO">HELLO</option>
-                  <option value="HEART1">HEART1</option>
-                  <option value="HEART2">HEART2</option>
-                  <option value="HIREME">HIREME</option>
-                  <option value="BEER">BEER</option>
-                  <option value="GLIDERS">GLIDERS</option>
-                  <option value="HEART">HEART</option>
-                  <option value="HEART_SHINY">HEART_SHINY</option>
+                id="combobox"
+                name="combobox"
+                value={formData.combobox}
+                onChange={(e) => handleInputChange("combobox", e.target.value)}
+              >
+                {Object.keys(GitfitiImage).map((key) => (
+                  <option key={key} value={key}>
+                    {key}
+                  </option>
+                ))}
               </select>
               <label htmlFor="offset">Week Offset:</label>
-              <input type="number" value={formData.offset} onChange={(e) =>
-                handleInputChange("offset", parseInt(e.target.value) || 0)}>
-              </input>
+              <input
+                type="number"
+                value={formData.offset}
+                onChange={(e) =>
+                  handleInputChange("offset", parseInt(e.target.value) || 0)
+                }
+              ></input>
             </div>
           </div>
-          <ContributionCalendar { ...formData }/>
+          <ContributionCalendar
+            gitfiti={formData.gitfiti}
+            onCellClick={onCellClick}
+          />
         </div>
         <div className="script">
           <div className="script-actions">
@@ -93,7 +115,9 @@ export default function App() {
             </button>
             <button
               onClick={() => {
-                const blob = new Blob([formData.gitfiti.generateScript()], { type: "text/plain" });
+                const blob = new Blob([formData.gitfiti.generateScript()], {
+                  type: "text/plain",
+                });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
@@ -108,19 +132,13 @@ export default function App() {
             </button>
           </div>
           <div className="script-text">
-            <pre>
-            {
-              formData.gitfiti.generateScript()
-            }
-            </pre>
+            <pre>{formData.gitfiti.generateScript()}</pre>
           </div>
         </div>
       </div>
 
       {showCopyHint && (
-        <div className="copy-hint">
-          ✓ Script copied to clipboard!
-        </div>
+        <div className="copy-hint">✓ Script copied to clipboard!</div>
       )}
     </main>
   );
