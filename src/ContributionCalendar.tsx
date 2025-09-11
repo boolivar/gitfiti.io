@@ -4,10 +4,12 @@ import { Gitfiti } from "./Gitfiti";
 
 interface ContributionCalendarProps {
   gitfiti: Gitfiti;
+  onCellClick?: (week: number, day: number) => void;
 }
 
 const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
-  gitfiti
+  gitfiti,
+  onCellClick
 }) => {
   const size = 53;
   // Days of the week labels
@@ -39,6 +41,8 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
                       key={week}
                       className={`day tr-${week}-${day} ${gitfiti.contributionLevel(week, day)}`}
                       title={`${gitfiti.contributionCount(week, day)} contributions`}
+                      onClick={() => onCellClick?.(week, day)}
+                      style={{ cursor: onCellClick ? 'pointer' : 'default' }}
                     ></td>
                   ))}
                 </tr>
