@@ -1,4 +1,5 @@
 export const GitfitiImage = {
+  CUSTOM: Array(7).fill(null).map(() => Array(53).fill(0)),
   KITTY: [
     [0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0],
     [0, 0, 4, 2, 4, 4, 4, 4, 2, 4, 0, 0],
@@ -138,8 +139,6 @@ export const GitfitiImage = {
     [0, 0, 4, 2, 4, 0, 0],
     [0, 0, 0, 4, 0, 0, 0],
   ],
-
-  CUSTOM: Array(7).fill(null).map(() => Array(53).fill(0)),
 };
 
 export class Gitfiti {
