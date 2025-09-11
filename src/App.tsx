@@ -7,7 +7,6 @@ type State = {
   combobox: string;
   offset: number;
   gitfiti: Gitfiti;
-  customPattern: number[][];
 };
 
 export default function App() {
@@ -41,22 +40,9 @@ export default function App() {
 
   const handleCellClick = (week: number, day: number) => {
     setFormData((prev) => {
-      // Switch to CUSTOM if not already
-      const newCombobox = "CUSTOM";
-      
-      // Create new custom pattern with incremented cell value
-      const newCustomPattern = prev.customPattern!.map((row, rowIndex) =>
-        rowIndex === day
-          ? row.map((cell, colIndex) =>
-              colIndex === week ? Math.min(cell + 1, 4) : cell
-            )
-          : [...row]
-      );
-      
       return generateGitfiti({
         ...prev,
-        combobox: newCombobox,
-        customPattern: newCustomPattern,
+        combobox: newCombobox
       });
     });
   };

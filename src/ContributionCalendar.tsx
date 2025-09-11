@@ -4,12 +4,12 @@ import { Gitfiti } from "./Gitfiti";
 
 interface ContributionCalendarProps {
   gitfiti: Gitfiti;
-  onCellClick?: (week: number, day: number) => void;
+  onCellClick: (week: number, day: number) => void;
 }
 
 const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
   gitfiti,
-  onCellClick
+  onCellClick,
 }) => {
   const size = 53;
   // Days of the week labels
@@ -24,7 +24,7 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
               <span key={day}>{dayLabels[day]}</span>
             ))}
           </div>
-  
+
           <table className="calendar-table">
             <thead>
               <tr>
@@ -41,8 +41,7 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
                       key={week}
                       className={`day tr-${week}-${day} ${gitfiti.contributionLevel(week, day)}`}
                       title={`${gitfiti.contributionCount(week, day)} contributions`}
-                      onClick={() => onCellClick?.(week, day)}
-                      style={{ cursor: onCellClick ? 'pointer' : 'default' }}
+                      onClick={() => onCellClick(week, day)}
                     ></td>
                   ))}
                 </tr>
@@ -50,12 +49,18 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
             </tbody>
           </table>
         </div>
-  
+
         <div className="calendar-legend">
           <span className="legend-text">Less</span>
           <div className="legend-squares">
-            <div className="legend-square level-0" title="0 contributions"></div>
-            <div className="legend-square level-1" title="1-5 contribution"></div>
+            <div
+              className="legend-square level-0"
+              title="0 contributions"
+            ></div>
+            <div
+              className="legend-square level-1"
+              title="1-5 contribution"
+            ></div>
             <div
               className="legend-square level-2"
               title="6-10 contributions"
