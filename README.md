@@ -1,13 +1,15 @@
-## Running React on Replit
+# gitfiti.io
 
-[React](https://reactjs.org/) is a popular JavaScript library for building user interfaces.
+Github contribution history art.
 
-[Vite](https://vitejs.dev/) is a blazing fast frontend build tool that includes features like Hot Module Reloading (HMR), optimized builds, and TypeScript support out of the box.
+## Overview
 
-Using the two in conjunction is one of the fastest ways to build a web app.
+This project provides an interactive web interface for Gitfiti art, allowing users to generate and visualize commit-based art for their GitHub contribution graph.
 
-### Getting Started
-- Hit run
-- Edit [App.tsx](#src/App.tsx) and watch it live update!
+## Live Demo
 
-By default, Replit runs the `dev` script, but you can configure it by changing the `run` field in the [configuration file](#.replit). Here are the vite docs for [serving production websites](https://vitejs.dev/guide/build.html)
+Check out the live site: https://boolivar.github.io/gitfiti.io/
+
+## Credits
+
+This work is based on [@gelstudios/gitfiti](https://github.com/gelstudios/gitfiti).
