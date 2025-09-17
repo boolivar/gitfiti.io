@@ -18,47 +18,46 @@ html {
 
 .links {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  align-items: center;
 }
 
 .link-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 8px 16px;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   text-decoration: none;
-  font-weight: 500;
-  border-radius: 6px;
   transition: all 0.2s ease;
-  font-size: 14px;
-  border: 1px solid transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .github-link {
-  color: #24292e;
-  background-color: #f6f8fa;
-  border-color: #d0d7de;
+  background-color: #24292e;
+  color: white;
 }
 
 .github-link:hover {
-  background-color: #f3f4f6;
-  border-color: #d0d7de;
-  transform: translateY(-1px);
+  background-color: #333;
+  transform: scale(1.1);
 }
 
 .replit-link {
-  color: #f26207;
-  background-color: #fef7f0;
-  border-color: #f26207;
+  background-color: #f26207;
+  color: white;
 }
 
 .replit-link:hover {
-  background-color: #f26207;
-  color: white;
-  transform: translateY(-1px);
+  background-color: #e55a06;
+  transform: scale(1.1);
 }
 
 .link-btn svg {
+  width: 18px;
+  height: 18px;
   fill: currentColor;
   flex-shrink: 0;
 }
