@@ -36,21 +36,23 @@ html {
 }
 
 .github-link {
-  background-color: #24292e;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .github-link:hover {
-  background-color: #333;
+  background-color: black;
+  color: white;
 }
 
 .replit-link {
-  background-color: #f26207;
-  color: white;
+  background-color: white;
+  color: #e55a06;
 }
 
 .replit-link:hover {
   background-color: #e55a06;
+  color: white;
 }
 
 .link-btn svg {
