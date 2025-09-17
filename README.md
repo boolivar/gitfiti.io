@@ -1,3 +1,5 @@
+[![Replit](https://replit.com/badge?caption=View%20On%20Replit)](https://replit.com/@boolivar/Gitfiti)
+
 # gitfiti.io
 
 Github contribution history art.
@@ -8,7 +10,7 @@ This project provides an interactive web interface for Gitfiti art, allowing use
 
 ## Live Demo
 
-Check out the live site: https://boolivar.github.io/gitfiti.io/
+Check out the live site: https://boolivar.github.io/gitfiti.io
 
 ## Credits
 
