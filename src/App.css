@@ -42,7 +42,6 @@ html {
 
 .github-link:hover {
   background-color: #333;
-  transform: scale(1.1);
 }
 
 .replit-link {
@@ -52,7 +51,6 @@ html {
 
 .replit-link:hover {
   background-color: #e55a06;
-  transform: scale(1.1);
 }
 
 .link-btn svg {
