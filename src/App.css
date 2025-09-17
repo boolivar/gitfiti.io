@@ -2,6 +2,67 @@ html {
   box-sizing: border-box;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #333;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+}
+
+.link-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.github-link {
+  color: #24292e;
+  background-color: #f6f8fa;
+  border-color: #d0d7de;
+}
+
+.github-link:hover {
+  background-color: #f3f4f6;
+  border-color: #d0d7de;
+  transform: translateY(-1px);
+}
+
+.replit-link {
+  color: #f26207;
+  background-color: #fef7f0;
+  border-color: #f26207;
+}
+
+.replit-link:hover {
+  background-color: #f26207;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.link-btn svg {
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
 .copy-hint {
   position: fixed;
   top: 20px;
