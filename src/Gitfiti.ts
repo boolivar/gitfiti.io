@@ -184,7 +184,7 @@ export class Gitfiti {
             this.contributionCount(x, y),
           );
         }
-        date.setDate(date.getDate() + 1);
+        date.setUTCDate(date.getUTCDate() + 1);
       }
     }
     return script;
@@ -197,14 +197,14 @@ export class Gitfiti {
 
   private fromDate(nowDate: Date): Date {
     var date = this.nextSunday(nowDate);
-    date.setDate(date.getDate() - 53 * 7);
+    date.setUTCDate(date.getUTCDate() - 53 * 7);
     date.setUTCHours(12, 0, 0, 0);
     return date;
   }
 
   private nextSunday(nowDate: Date): Date {
     var date = new Date(nowDate);
-    date.setDate(date.getDate() + (7 - date.getDay()));
+    date.setUTCDate(date.getUTCDate() + (7 - date.getUTCDay()));
     return date;
   }
 }
