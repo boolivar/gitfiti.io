@@ -149,7 +149,7 @@ export class Gitfiti {
   offset: number;
   scale: number;
 
-  constructor(image: number[][], offset: number = 0, scale: number = 4) {
+  constructor(image: number[][], offset: number = 0, scale: number = 5) {
     this.image = image;
     this.offset = offset;
     this.scale = scale;
