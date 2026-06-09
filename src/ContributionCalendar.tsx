@@ -40,7 +40,7 @@ const ContributionCalendar: React.FC<ContributionCalendarProps> = ({
                     <td
                       key={week}
                       className={`day tr-${week}-${day} ${gitfiti.contributionLevel(week, day)}`}
-                      title={`${gitfiti.contributionCount(week, day)} contributions`}
+                      title={gitfiti.cellDate(week, day)}
                       onClick={() => onCellClick(week, day)}
                     ></td>
                   ))}

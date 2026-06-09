@@ -173,6 +173,12 @@ export class Gitfiti {
     return ox >= 0 && ox < this.image[0].length ? this.image[y][ox] : 0;
   }
 
+  cellDate(x: number, y: number): string {
+    const date = this.fromDate(new Date());
+    date.setUTCDate(date.getUTCDate() + x * 7 + y);
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  }
+
   generateScript(): string {
     var script = "";
     var nowDate = new Date();
